@@ -58,4 +58,4 @@ const RecipesHomeScreen = ({ route }) => {
   )
 }
 
-export default RecipetsHomeScreen
+export default RecipesHomeScreen

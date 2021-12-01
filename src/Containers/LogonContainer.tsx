@@ -18,6 +18,7 @@ import Button from '@/Components/Button'
 import TextButton from '@/Components/TextButton'
 import LinkButton from '@/Components/LinkButton'
 import Label from '@/Components/Label'
+import { navigate } from '@/Navigators/utils'
 
 interface LoginFormModel {
   email: string
@@ -96,7 +97,7 @@ const LogonContainer = () => {
           bold={false}
           type={'text'}
           text={'Entrar'}
-          onPress={() => Alert.alert('Login!')}
+          onPress={() => navigate('RecipesHomeScreen', {})}
         />
       </View>
     </ScrollView>
