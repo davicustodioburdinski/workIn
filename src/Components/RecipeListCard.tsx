@@ -8,6 +8,7 @@ interface Props {
   name: string
   description: string
   benefits: string
+  onPress(): void
 }
 
 const RecipeListCard = ({

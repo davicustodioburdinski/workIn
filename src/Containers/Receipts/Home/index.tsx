@@ -4,19 +4,22 @@ import GetRecipe, { Recipes } from '@/Services/Recipes/GetRecipe'
 import { useIsFocused, useNavigation } from '@react-navigation/native'
 import { ScrollView, View } from 'react-native'
 import Button from '@/Components/Button'
+import { navigate } from '@/Navigators/utils'
+import BackgroundContainer from '@/Components/BackgroundContainer'
+import RecipeListCard from '@/Components/RecipeListCard'
 
 const RecipesHomeScreen = ({ route }) => {
   const { Common, Colors, Gutters, Layout } = useTheme()
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const navigation = useNavigation()
-  const [recipe, setRecipe] = useState<Recipes>()
+  const [recipes, setRecipes] = useState<Recipes[]>([])
   const isFocused = useIsFocused()
   useEffect(() => {
     setIsLoading(true)
     GetRecipe()
       .then(resp => {
         if (resp != null) {
-          setRecipe(resp)
+          setRecipes(resp)
         } else {
           toast.show('Nenhuma receita encontrada', {
             type: 'warning',
@@ -28,34 +31,39 @@ const RecipesHomeScreen = ({ route }) => {
       })
   }, [isFocused])
 
+  function AddRecipe() {
+    navigate('RecipeCreateScreen', {})
+  }
+
   return (
-    <ScrollView>
-      <View
-        style={[
-          Layout.fill,
-          Gutters.regularVPadding,
-          Gutters.largeHPadding,
-          Gutters.largeVPadding,
-        ]}
-      >
-        <View
-          style={[
-            Layout.fullWidth,
-            Layout.justifyContentCenter,
-            Layout.columnHCenter,
-            Layout.smallVMargin,
-          ]}
-        >
-          <Button
-            text={'Criar nova receita'}
-            type={'text'}
-            inverted={true}
-            color={Colors.black}
-            // onPress={() => goToRecipesList()}
-          />
-        </View>
-      </View>
-    </ScrollView>
+    <BackgroundContainer>
+      <Button
+        text={'Adicionar receita'}
+        size={'regular'}
+        type={'text'}
+        inverted={true}
+        isLoading={isLoading}
+        onPress={() => AddRecipe()}
+      />
+      <ScrollView style={[Gutters.largeVMargin]}>
+        {recipes.map(value => {
+          return (
+            <RecipeListCard
+              onPress={() => {
+                navigate('RecipeUpdateScreen', {
+                  productId: value?.id,
+                })
+              }}
+              name={value.name}
+              description={value.description}
+              benefits={value.benefits}
+              key={value.id}
+              id={value.id}
+            />
+          )
+        })}
+      </ScrollView>
+    </BackgroundContainer>
   )
 }
 

@@ -4,6 +4,7 @@ import api from '@/Services'
 export interface PropsGetRecipesRequest {
   name: string
   description: string
+  benefits: string
   id: string
 }
 
@@ -22,6 +23,7 @@ export interface Recipes {
   name: string
   description: string
   id: string
+  benefits: string
 }
 
 export default async (): Promise<PropsGetRecipesResponse> => {

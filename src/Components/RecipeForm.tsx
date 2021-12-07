@@ -14,7 +14,7 @@ interface Props {
   name?: string | undefined
   description?: string | undefined
   benefits: string | undefined
-  recipeUrl: string | undefined
+  recipeUrl?: string | undefined
 }
 
 const RecipeForm = ({ id, name, description, benefits, recipeUrl }: Props) => {
