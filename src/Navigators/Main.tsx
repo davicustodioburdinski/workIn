@@ -2,9 +2,9 @@ import React from 'react'
 import { LogonContainer } from '@/Containers'
 import { createStackNavigator } from '@react-navigation/stack'
 import RecipesHomeScreen from '@/Containers/Receipts/Home'
-import RecipeCreateScreen from "@/Containers/Receipts/CreateRecipe";
-import UpdateRecipeScreen from "@/Containers/Receipts/UpdateRecipe";
-import RecipeDeleteScreen from "@/Containers/Receipts/DeleteRecipe";
+import RecipeCreateScreen from '@/Containers/Receipts/CreateRecipe'
+import UpdateRecipeScreen from '@/Containers/Receipts/UpdateRecipe'
+import RecipeDeleteScreen from '@/Containers/Receipts/DeleteRecipe'
 
 const Tab = createStackNavigator()
 
