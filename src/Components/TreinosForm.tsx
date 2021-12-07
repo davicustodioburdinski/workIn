@@ -15,7 +15,7 @@ interface Props {
     treinoUrl?: string | undefined
 }
 
-const ExercisesForm = ({
+const TreinosForm = ({
     id,
     name,
     description,
@@ -212,3 +212,6 @@ const ExercisesForm = ({
           </View>
       )
 }
+
+
+export default TreinosForm
