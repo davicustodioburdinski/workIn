@@ -1,5 +1,4 @@
 import React from 'react'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { LogonContainer } from '@/Containers'
 import { createStackNavigator } from '@react-navigation/stack'
 

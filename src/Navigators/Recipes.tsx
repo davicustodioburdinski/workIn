@@ -9,7 +9,7 @@ const RecipesNavigator = () => {
     <Tab.Navigator>
       {/*Telas de Receitas*/}
       <Tab.Screen
-        name="RecipesHomeScreen"
+        name='RecipesHomeScreen'
         component={RecipesHomeScreen}
         options={{
           headerShown: false,

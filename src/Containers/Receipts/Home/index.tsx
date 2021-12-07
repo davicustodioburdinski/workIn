@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import useTheme from '@/Hooks/useTheme'
 import GetRecipe, { Recipes } from '@/Services/Recipes/GetRecipe'
-import { useIsFocused } from '@react-navigation/native'
+import { useIsFocused, useNavigation } from '@react-navigation/native'
 import { ScrollView, View } from 'react-native'
 import Button from '@/Components/Button'
 
 const RecipesHomeScreen = ({ route }) => {
   const { Common, Colors, Gutters, Layout } = useTheme()
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const navigation = useNavigation()
   const [recipe, setRecipe] = useState<Recipes>()
   const isFocused = useIsFocused()
   useEffect(() => {

@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {
-  ActivityIndicator,
-  Alert,
-  ScrollView,
-  Text,
-  TextInput,
-  View,
-} from 'react-native'
+import { ActivityIndicator, Alert, ScrollView, Text, View } from 'react-native'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { Brand } from '@/Components'
@@ -18,7 +11,7 @@ import Button from '@/Components/Button'
 import TextButton from '@/Components/TextButton'
 import LinkButton from '@/Components/LinkButton'
 import Label from '@/Components/Label'
-import { navigate } from '@/Navigators/utils'
+import { useNavigation } from '@react-navigation/native'
 
 interface LoginFormModel {
   email: string
@@ -28,6 +21,7 @@ interface LoginFormModel {
 const LogonContainer = () => {
   const { t } = useTranslation()
   const { Common, Fonts, Gutters, Layout, Colors } = useTheme()
+  const navigation = useNavigation()
   const [loginForm, setLoginForm] = useState<LoginFormModel>({
     email: '',
     password: '',
@@ -90,15 +84,15 @@ const LogonContainer = () => {
             }
             isPassword={true}
           />
+          <Button
+            size={'small'}
+            inverted={true}
+            bold={false}
+            type={'text'}
+            text={'Entrar'}
+            onPress={() => navigation.navigate('RecipesHomeScreen')}
+          />
         </View>
-        <Button
-          size={'small'}
-          inverted={true}
-          bold={false}
-          type={'text'}
-          text={'Entrar'}
-          onPress={() => navigate('RecipesHomeScreen', {})}
-        />
       </View>
     </ScrollView>
   )
