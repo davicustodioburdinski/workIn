@@ -3,12 +3,13 @@ import { useTheme } from '@/Hooks'
 import React, { useState } from 'react'
 import { ActivityIndicator, ScrollView, View } from 'react-native'
 import Label from '@/Components/Label'
-import RecipeForm from "@/Components/RecipeForm";
+import RecipeForm from '@/Components/RecipeForm'
+import { PropsPostRecipeRequest } from '@/Services/Recipes/PostRecipe'
 
 const RecipeCreateScreen = () => {
   const { Gutters, Colors, Layout } = useTheme()
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [recipe, setRecipe] = useState<PropsPostProductsRequest>()
+  const [recipe, setRecipe] = useState<PropsPostRecipeRequest>()
 
   return (
     <BackgroundContainer>

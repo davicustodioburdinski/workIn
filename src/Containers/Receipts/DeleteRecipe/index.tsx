@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from 'react'
-import { ActivityIndicator, ScrollView, View } from 'react-native'
-import { useIsFocused } from '@react-navigation/native'
-import RecipeForm from '@/Components/RecipeForm'
-import GetRecipe, { Recipe } from '@/Services/Recipes/GetRecipe'
+import { Recipe } from '@/Services/Recipes/GetRecipe'
+import DeleteRecipe, {
+  PropsDeleteRecipesRequest,
+} from '@/Services/Recipes/DeleteRecipe'
 import BackgroundContainer from '@/Components/BackgroundContainer'
-import Label from '@/Components/Label'
+import { ActivityIndicator, View } from 'react-native'
+import { useIsFocused } from '@react-navigation/native'
 import useTheme from '@/Hooks/useTheme'
+import Label from '@/Components/Label'
 
-const UpdateRecipeScreen = ({ route }) => {
+const RecipeDeleteScreen = ({ route }) => {
   const { Layout, Gutters, Colors } = useTheme()
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [recipe, setRecipe] = useState<Recipe>()
+  const [recipe, setRecipe] = useState<PropsDeleteRecipesRequest>()
   const [recipeId] = useState<string>(route.params?.recipeId)
   const isFocused = useIsFocused()
   useEffect(() => {
     setIsLoading(true)
-    function obterProduto() {
-      GetRecipe(recipeId)
+    function deleteRecipe() {
+      DeleteRecipe(recipeId)
         .then(resposta => {
           setRecipe(resposta)
         })
@@ -24,14 +26,14 @@ const UpdateRecipeScreen = ({ route }) => {
           setIsLoading(false)
         })
     }
-    obterProduto()
+    deleteRecipe()
   }, [isFocused, recipeId])
 
   return (
     <BackgroundContainer>
       {isLoading && <ActivityIndicator color={Colors.primary} size={'large'} />}
       {!isLoading && (
-        <ScrollView
+        <View
           style={[
             Layout.fill,
             {
@@ -50,24 +52,17 @@ const UpdateRecipeScreen = ({ route }) => {
             ]}
           >
             <Label
-              text={'Editar receita'}
+              text={'Deletar receita'}
               type={'text'}
               alignment={'center'}
               size={'small'}
               color={Colors.white}
             />
           </View>
-          <RecipeForm
-            name={recipe?.name}
-            description={recipe?.description}
-            benefits={recipe?.benefits}
-            id={recipe?.id}
-            key={recipe?.id}
-          />
-        </ScrollView>
+        </View>
       )}
     </BackgroundContainer>
   )
 }
 
-export default UpdateRecipeScreen
+export default RecipeDeleteScreen
